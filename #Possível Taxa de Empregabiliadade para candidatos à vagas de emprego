@@ -1,0 +1,59 @@
+'''
+def calcular_probabilidades(...): Esta linha define uma função chamada calcular_probabilidades.
+total_candidaturas, periodo_dias, entrevistas_realizadas,selecoes : Estes são os parâmetros da função. Eles representam:
+total_candidaturas: Número total de candidaturas a emprego.
+periodo_dias: O período (em dias) durante o qual as solicitações foram feitas.
+entrevistas_realizadas: Número de entrevistas realizadas.
+selecoes: Número de ofertas de emprego recebidas.
+O texto entre aspas triplas ( """...""") é uma docstring , que fornece uma descrição do propósito da função, parâmetros e o que ela retorna.
+Calculando probabilidades
+'''
+
+# Cálculo das probabilidades
+    prob_entrevista = (entrevistas_realizadas / total_candidaturas) * 100 if total_candidaturas > 0 else 0
+    prob_selecao_das_entrevistas = (selecoes / entrevistas_realizadas) * 100 if entrevistas_realizadas > 0 else 0
+    prob_selecao_das_candidaturas = (selecoes / total_candidaturas) * 100 if total_candidaturas > 0 else 0
+#Esta seção calcula as probabilidades:
+prob_entrevista: Probabilidade de conseguir uma entrevista, calculada como (número de entrevistas / total de inscrições) * 100.
+prob_selecao_das_entrevistas: Probabilidade de seleção dada uma entrevista, calculada como (número de seleções / número de entrevistas) * 100.
+prob_selecao_das_candidaturas: Probabilidade de seleção de todas as aplicações, calculada como (número de seleções / total de aplicações) * 100.
+if ... else 0: Esta parte lida com casos em que o denominador é 0 para evitar erros de divisão por zero. Se o denominador for 0, a probabilidade é definida como 0.
+  
+#Calculando métricas diárias e projetadas
+  # Ajuste para 30 dias (média diária)
+    candidaturas_por_dia = total_candidaturas / periodo_dias if periodo_dias > 0 else 0
+    entrevistas_por_dia = entrevistas_realizadas / periodo_dias if periodo_dias > 0 else 0
+    selecoes_por_dia = selecoes / periodo_dias if periodo_dias > 0 else 0
+
+    # Projeção para 30 dias
+    candidaturas_30dias = candidaturas_por_dia * 30
+    entrevistas_30dias = entrevistas_por_dia * 30
+    selecoes_30dias = selecoes_por_dia * 30
+A return declaração envia de volta um dicionário contendo todas as probabilidades e métricas calculadas. Este dicionário é organizado com chaves (por exemplo, 'Probabilidade de ser chamado para entrevista') e seus valores correspondentes.
+
+#Executando o código (se nome == " main ":)
+if __name__ == "__main__":
+    print("Calculadora de Probabilidades de Entrevistas e Seleções\n")
+
+    # Input dos dados
+    total_candidaturas = int(input("Total de vagas em que se candidatou: "))
+    periodo_dias = int(input("Período das candidaturas (em dias): "))
+    entrevistas_realizadas = int(input("Quantidade de entrevistas realizadas: "))
+    selecoes = int(input("Quantidade de seleções: "))
+
+    # Cálculo
+    resultados = calcular_probabilidades(total_candidaturas, periodo_dias, entrevistas_realizadas, selecoes)
+
+    # Exibição dos resultados
+    print("\n--- Resultados ---")
+    for chave, valor in resultados.items():
+        if isinstance(valor, dict):
+            print(f"\n{chave}:")
+            for sub_chave, sub_valor in valor.items():
+                print(f"  {sub_chave}: {sub_valor}")
+        else:
+            print(f"{chave}: {valor}")
+if __name__ == "__main__":: Este bloco garante que o código dentro dele só seja executado quando o script for executado diretamente (não quando for importado como um módulo).
+input(...): Esta função solicita que o usuário insira os dados necessários (total de inscrições, período, entrevistas, seleções).
+calcular_probabilidades(...): A função é chamada com a entrada do usuário para realizar os cálculos.
+O restante do código imprime os resultados de forma formatada. Ele itera pelo dicionário retornado por calcular_probabilidadese exibe os resultados para o usuário.
